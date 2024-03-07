@@ -12,22 +12,35 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import {
-  SettingsOutlined,
-  ChevronLeft,
-  ChevronRightOutlined,
-  HomeOutlined,
-  ShoppingCartOutlined,
-  Groups2Outlined,
-  ReceiptLongOutlined,
-  PublicOutlined,
-  PointOfSaleOutlined,
-  TodayOutlined,
-  CalendarMonthOutlined,
-  AdminPanelSettingsOutlined,
-  TrendingUpOutlined,
-  PieChartOutlined,
-} from "@mui/icons-material";
+// import {
+//   SettingsOutlined,
+//   ChevronLeft,
+//   ChevronRightOutlined,
+//   HomeOutlined,
+//   ShoppingCartOutlined,
+//   Groups2Outlined,
+//   ReceiptLongOutlined,
+//   PublicOutlined,
+//   PointOfSaleOutlined,
+//   TodayOutlined,
+//   CalendarMonthOutlined,
+//   AdminPanelSettingsOutlined,
+//   TrendingUpOutlined,
+//   PieChartOutlined,
+// } from "@mui/icons-material";
+import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
+import SettingsOutlined from '@mui/icons-material/SettingsOutlined';
+import ChevronRightOutlined from '@mui/icons-material/ChevronRightOutlined';
+import ChevronLeft from '@mui/icons-material/ChevronLeft';
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import PostAddOutlinedIcon from '@mui/icons-material/PostAddOutlined';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import FormatShapesOutlinedIcon from '@mui/icons-material/FormatShapesOutlined';
+import DraftsOutlinedIcon from '@mui/icons-material/DraftsOutlined';
+import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./Flexbetween";
@@ -35,60 +48,40 @@ import profileImage from "../assets/images/chatapp.jpeg";
 
 const navItems = [
   {
-    text: "Dashboard",
-    icon: <HomeOutlined />,
+    text: "Your feeds",
+    icon: <DynamicFeedOutlinedIcon />,
   },
   {
-    text: "Client Facing",
+    text: "Menu",
     icon: null,
   },
   {
-    text: "Products",
-    icon: <ShoppingCartOutlined />,
+    text: "Your Posts",
+    icon: < PostAddOutlinedIcon />,
   },
   {
-    text: "Customers",
-    icon: <Groups2Outlined />,
+    text: "Events",
+    icon: <EventOutlinedIcon />,
   },
   {
-    text: "Transactions",
-    icon: <ReceiptLongOutlined />,
+    text: "Favorites",
+    icon: <FavoriteOutlinedIcon />,
   },
   {
-    text: "Geography",
-    icon: <PublicOutlined />,
+    text: "Drafted Posts",
+    icon: <DraftsOutlinedIcon />,
   },
   {
-    text: "Sales",
-    icon: null,
+    text: "Ads Manager",
+    icon: <FormatShapesOutlinedIcon />,
   },
   {
-    text: "Overview",
-    icon: <PointOfSaleOutlined />,
+    text: "Message",
+    icon: <MessageOutlinedIcon/>,
   },
   {
-    text: "Daily",
-    icon: <TodayOutlined />,
-  },
-  {
-    text: "Monthly",
-    icon: <CalendarMonthOutlined />,
-  },
-  {
-    text: "Breakdown",
-    icon: <PieChartOutlined />,
-  },
-  {
-    text: "Management",
-    icon: null,
-  },
-  {
-    text: "Admin",
-    icon: <AdminPanelSettingsOutlined />,
-  },
-  {
-    text: "Performance",
-    icon: <TrendingUpOutlined />,
+    text: "See More",
+    icon: <ExpandMoreOutlinedIcon />,
   },
 ];
 
@@ -132,7 +125,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    ECOMVISION
+                    experienceHUB
                   </Typography>
                 </Box>
                 {!isNonMobile && (
