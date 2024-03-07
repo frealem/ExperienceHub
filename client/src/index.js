@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { configureStore } from '@reduxjs/toolkit';
-import globalReducer from "./components/states";
+import globalReducer from "./components/States/states";
 import { Provider } from 'react-redux';
 
 const store=configureStore({
