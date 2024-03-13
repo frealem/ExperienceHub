@@ -125,7 +125,7 @@ const Sidebar = ({
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
                   <Typography variant="h4" fontWeight="bold">
-                    experienceHUB
+                  experience<span style={{backgroundColor:"#000000",marginRight:"10px",borderWidth:"8px"}}>HUB</span>
                   </Typography>
                 </Box>
                 {!isNonMobile && (

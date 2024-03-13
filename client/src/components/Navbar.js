@@ -23,16 +23,18 @@ import {
   MenuItem,
   useTheme,
 } from "@mui/material";
+import AuthPage from "../pages/authPage";
+import { Link } from "react-router-dom";
 
-const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch();
   const theme = useTheme();
-
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClick = (event) =>{
+        setAnchorEl(event.currentTarget);}
   const handleClose = () => setAnchorEl(null);
-
+ 
   return (
     <AppBar
       sx={{
@@ -43,10 +45,10 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* LEFT SIDE */}
-        <FlexBetween>
-          <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-            <MenuIcon />
-          </IconButton>
+      <FlexBetween>{(!isSidebarOpen)&&
+        <Typography variant="h4" fontWeight="bold">
+                  experience<span style={{backgroundColor:"#7812C8",fontWeight:"bold",marginRight:"10px"}}>HUB</span>
+                  </Typography>}
           <FlexBetween
             backgroundColor={theme.palette.background.alt}
             borderRadius="9px"
@@ -62,6 +64,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
 
         {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
+        <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+            <MenuIcon />
+          </IconButton>
           <IconButton onClick={() => dispatch(setMode())}>
             {theme.palette.mode === "dark" ? (
               <DarkModeOutlined sx={{ fontSize: "25px" }} />
@@ -74,8 +79,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           </IconButton>
 
           <FlexBetween>
-            <Button
-              onClick={handleClick}
+            <Link
+              to="/authpage"
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -111,7 +116,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <ArrowDropDownOutlined
                 sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
               />
-            </Button>
+            </Link>
             <Menu
               anchorEl={anchorEl}
               open={isOpen}
@@ -123,7 +128,9 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           </FlexBetween>
         </FlexBetween>
       </Toolbar>
+      
     </AppBar>
+    
   );
 };
 
