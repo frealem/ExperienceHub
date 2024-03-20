@@ -12,7 +12,7 @@ import {
   useTheme,
 } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import {Formik} from 'formik';
+import {Field, Form, Formik} from 'formik';
 import * as yup from 'yup';
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
@@ -28,10 +28,37 @@ const registerSchema=yup.object().shape({
   address:yup.string().required("required")
 });
 
+const loginSchema=yup.object().shape({
+  email:yup.string().email("invalid email").required("required"),
+  password:yup.string().required("required"),
+})
+
+const initialValuesLogin={
+  email:"",
+password:"",
+}
+
+const initialValuesSignup={
+  email:"",
+  phone:"",
+  address:"",
+  fullName:"",
+  password:"",
+}
+
 const AuthPage = () => {
   const theme = useTheme();
   const [open, setOpen] = useState(true);
   const [signUp, setSignUp] = useState(false);
+
+  //handle submit
+const handleSubmitLogin=()=>{
+  console.log('user logged in');
+}
+
+const handleSubmitSignup=()=>{
+  console.log('user signed up');
+}
 
   const openDialog = () => {
     setOpen(true);
@@ -77,19 +104,50 @@ const AuthPage = () => {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Stack spacing={2} margin={2}>
-              <TextField variant="outlined" label="Email" />
-              <TextField variant="outlined" label="Password" />
-              <Button
-                backgroundColor={theme.palette.secondary.light}
-                variant="contained"
-              >
-                Sign In
-              </Button>
-              <a onClick={handleSignUpClick}>
-                I don't have an account, Sign Up
-              </a>
-            </Stack>
+          <Formik
+              initialValues={initialValuesLogin}
+              onSubmit={handleSubmitLogin}
+              validationSchema={loginSchema}
+            >
+            {({
+              values,
+              errors,
+              touched,
+              handleBlur,
+              handChange,
+              handleSubmit,
+              setFieldValue,
+              resetForm,
+            })=>(<Form>
+                <Stack spacing={2} margin={2}>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Email"
+                    name="email"
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Password"
+                    name="password"
+                    type="password"
+                  />
+                  <Button
+                    type="submit"
+                    backgroundColor={theme.palette.secondary.light}
+                    variant="contained"
+                  >
+                    Sign In
+                  </Button>
+                  <a onClick={handleSignUpClick}>
+                    I don't have an account, Sign Up
+                  </a>
+                </Stack>
+              </Form>)
+            }
+              
+            </Formik>
           </DialogContent>
         </Dialog>
       ) : (
@@ -119,27 +177,73 @@ const AuthPage = () => {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Stack spacing={2} margin={2}>
-              <TextField variant="outlined" label="Full Name" />
-              <TextField variant="outlined" label="Phone Number" />
-              <TextField variant="outlined" label="Email" />
-              <TextField variant="outlined" label="Address" />
-              <TextField variant="outlined" label="Password" />
-              <TextField variant="outlined" label="Confirm Password" />
-              <FormControlLabel
-                control={<Checkbox defaultChecked color="primary" />}
-                label="Accept All Agreement And Submit"
-              />
-              <Button
-                backgroundColor={theme.palette.secondary.light}
-                variant="contained"
-              >
-                Sign Up
-              </Button>
-              <a onClick={handleSignInClick}>
-                I already have an account, Sign In
-              </a>
-            </Stack>
+          <Formik 
+            initialValues={initialValuesSignup}
+              onSubmit={handleSubmitSignup}
+              validationSchema={registerSchema}>
+                {({
+                  values,
+              errors,
+              touched,
+              handleBlur,
+              handChange,
+              handleSubmit,
+              setFieldValue,
+              resetForm,
+                })=>(<Form>
+                <Stack spacing={2} margin={2}>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Full Name"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Phone Number"
+                    name="phoneNumber"
+                    placeholder="Enter your mobile number "
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Email"
+                    name="email"
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Password"
+                    name="password"
+                    type="password"
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type="password"
+                  />
+                  <FormControlLabel
+                    control={<Field as={Checkbox} color="primary" name="acceptAgreement" />}
+                    label="Accept All Agreement And Submit"
+                  />
+                  <Button
+                    type="submit"
+                    backgroundColor={theme.palette.secondary.light}
+                    variant="contained"
+                  >
+                    Sign Up
+                  </Button>
+                  <a onClick={handleSignInClick}>
+                    I already have an account, Sign In
+                  </a>
+                </Stack>
+              </Form>)}
+              </Formik>
+            
           </DialogContent>
         </Dialog>
       )}
