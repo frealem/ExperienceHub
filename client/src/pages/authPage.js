@@ -17,7 +17,8 @@ import * as yup from 'yup';
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import Dropzone from 'react-dropzone';
-
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 //client side validation
 
 const registerSchema=yup.object().shape({
@@ -199,13 +200,13 @@ const handleSubmitSignup=()=>{
                     name="fullName"
                     placeholder="Enter your full name"
                   />
-                  <Field
-                    as={TextField}
-                    variant="outlined"
-                    label="Phone Number"
-                    name="phoneNumber"
-                    placeholder="Enter your mobile number "
-                  />
+                   <PhoneInput
+                    country="et"
+  value={values.phone}
+  onChange={(phone) => setFieldValue('phone', phone)}
+  style={{ width: '100%', marginTop: '8px' }}
+  inputStyle={{ padding: '12px 14px' }}
+          />
                   <Field
                     as={TextField}
                     variant="outlined"
