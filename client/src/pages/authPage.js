@@ -19,6 +19,7 @@ import {useDispatch} from "react-redux";
 import Dropzone from 'react-dropzone';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import PhoneInputField from "../components/phoneInput";
 //client side validation
 
 const registerSchema=yup.object().shape({
@@ -196,36 +197,42 @@ const handleSubmitSignup=()=>{
                   <Field
                     as={TextField}
                     variant="outlined"
-                    label="Full Name"
                     name="fullName"
                     placeholder="Enter your full name"
                   />
-                   <PhoneInput
-                    country="et"
-  value={values.phone}
-  onChange={(phone) => setFieldValue('phone', phone)}
-  style={{ width: '100%', marginTop: '8px' }}
-  inputStyle={{ padding: '12px 14px' }}
-          />
-                  <Field
+              <Field 
+              as={TextField}
+              variant="outlined"
+              name="phone"
+               component={PhoneInputField}
+               inputStyle={{ width: '100%',outerHeight:"100%" }} // Set the width of the phone input field
+      containerStyle={{ width: '100%',outerHeight:"100%"  }} 
+       />
+            <Field
                     as={TextField}
                     variant="outlined"
-                    label="Email"
-                    name="email"
+                    name="address"
+                    placeholder="Enter your address"
                   />
                   <Field
                     as={TextField}
                     variant="outlined"
-                    label="Password"
+                    name="email"
+                    placeholder="Enter your email"
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
                     name="password"
                     type="password"
+                    placeholder="Enter new password"
                   />
                   <Field
                     as={TextField}
                     variant="outlined"
-                    label="Confirm Password"
                     name="confirmPassword"
                     type="password"
+                    placeholder="confirm your password"
                   />
                   <FormControlLabel
                     control={<Field as={Checkbox} color="primary" name="acceptAgreement" />}
