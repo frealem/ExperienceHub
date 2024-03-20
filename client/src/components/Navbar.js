@@ -24,17 +24,20 @@ import {
   useTheme,
 } from "@mui/material";
 import AuthPage from "../pages/authPage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen}) => {
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) =>{
         setAnchorEl(event.currentTarget);}
   const handleClose = () => setAnchorEl(null);
- 
+ const handleAuth=()=>{
+navigate("/authpage")
+ }
   return (
     <AppBar
       sx={{
@@ -79,8 +82,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen}) => {
           </IconButton>
 
           <FlexBetween>
-            <Link
-              to="/authpage"
+            <Button
+              onClick={handleAuth}
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -116,7 +119,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen}) => {
               <ArrowDropDownOutlined
                 sx={{ color: theme.palette.secondary[300], fontSize: "25px" }}
               />
-            </Link>
+            </Button>
             <Menu
               anchorEl={anchorEl}
               open={isOpen}
