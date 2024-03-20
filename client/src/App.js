@@ -5,8 +5,8 @@ import {useSelector} from 'react-redux';
 import { themeSettings } from "./assets/theme";
 import {BrowserRouter,Navigate,Route,Router,Routes} from "react-router-dom";
 import Layout from "./components/Layout";
-import FeedPage from "./pages/feedpage";
 import AuthPage from "./pages/authPage";
+import FeedPage from "./pages/HomePage/feedPage";
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);

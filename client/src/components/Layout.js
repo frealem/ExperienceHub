@@ -1,5 +1,4 @@
-import React,{useState} from 'react'
-import FeedPage from '../pages/feedpage'
+import React,{useState} from 'react';
 import { useGetUserQuery } from "./States/Api";
 import { Box, useMediaQuery } from "@mui/material";
 import { Outlet } from "react-router-dom";

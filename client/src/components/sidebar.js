@@ -12,22 +12,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-// import {
-//   SettingsOutlined,
-//   ChevronLeft,
-//   ChevronRightOutlined,
-//   HomeOutlined,
-//   ShoppingCartOutlined,
-//   Groups2Outlined,
-//   ReceiptLongOutlined,
-//   PublicOutlined,
-//   PointOfSaleOutlined,
-//   TodayOutlined,
-//   CalendarMonthOutlined,
-//   AdminPanelSettingsOutlined,
-//   TrendingUpOutlined,
-//   PieChartOutlined,
-// } from "@mui/icons-material";
 import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
 import SettingsOutlined from '@mui/icons-material/SettingsOutlined';
 import ChevronRightOutlined from '@mui/icons-material/ChevronRightOutlined';
@@ -45,6 +29,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./Flexbetween";
 import profileImage from "../assets/images/chatapp.jpeg";
+import UserWidget from "../pages/widgets/userWidget";
 
 const navItems = [
   {
@@ -112,7 +97,7 @@ const Sidebar = ({
           sx={{
             width: drawerWidth,
             "& .MuiDrawer-paper": {
-              color: theme.palette.secondary[200],
+              color: theme.palette.grey[50],
               backgroundColor: theme.palette.background.alt,
               boxSixing: "border-box",
               borderWidth: isNonMobile ? 0 : "2px",
@@ -134,6 +119,7 @@ const Sidebar = ({
                   </IconButton>
                 )}
               </FlexBetween>
+            <FlexBetween><Box pt={5}><UserWidget/></Box></FlexBetween> 
             </Box>
             <List>
               {navItems.map(({ text, icon }) => {

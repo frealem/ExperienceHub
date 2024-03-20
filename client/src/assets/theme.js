@@ -101,7 +101,7 @@ export const tokensDark = {
               // palette values for light mode
               primary: {
                 ...tokensLight.primary,
-                main: tokensDark.grey[50],
+                main: tokensDark.grey[0],
                 light: tokensDark.grey[100],
               },
               secondary: {
